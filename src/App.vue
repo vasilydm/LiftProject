@@ -1,26 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <MyContainer/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MyContainer from './components/MyContainer.vue';
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    MyContainer,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.app {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #d6b775;
 }
+.color1 {color: #1d2106;}
+.color2 {color: #154e2d;}
+.color3 {color: #d67788;}
+.color4 {color: #d6b775;}
+.color5 {color: #e2e2a9;}
 </style>
+
