@@ -92,7 +92,8 @@ methods: {
     this.$refs.myBuilding.$refs.myFloor[floorIndex].$refs.theVeryButton.style.backgroundColor = '#f93a3a'
 
     // Получаем крайнюю верхнюю точку targetFloor
-    let topTargetFloor = targetFloor.getBoundingClientRect().top - 7 + 'px';
+    let topTargetFloor = targetFloor.getBoundingClientRect().top
+     + 2 + 'px';
 
     //Получаем сам элемент лифта
     let elevator = this.$refs.myBuilding.$refs.myElevator.$refs.theVeryElevator;
@@ -109,27 +110,23 @@ methods: {
     let duration = Math.abs(checkButton.id - checkVisited.id);
 
     //Запускаем лифт
-    topTargetFloor += window.scrollY;
-    gsap.to(elevator, {top:topTargetFloor, duration:duration})
+    gsap.to(elevator, {top:topTargetFloor, duration:duration}).then(() => {
+      //Меняем значение isVisited целевого этажа
+      checkButton.isVisited = true
+
+      //Меняем isPushed кнопки целевого этажа
+      checkButton.isPushed = false
+
+      //Меняем цвет кнопки целевого этажа на зеленый
+      this.$refs.myBuilding.$refs.myFloor[floorIndex].$refs.theVeryButton.style.backgroundColor = '#60f93a'
+    })
+
+      
+    
 
     //ТАЙМЕР!!!
 
     //МИГАНИЕ!!!
-
-    //Меняем значение isVisited целевого этажа
-    checkButton.isVisited = true
-
-    //Меняем isPushed кнопки целевого этажа
-    checkButton.isPushed = false
-
-    //Меняем цвет кнопки целевого этажа на зеленый
-    this.$refs.myBuilding.$refs.myFloor[floorIndex].$refs.theVeryButton.style.backgroundColor = '#60f93a'
-
-
-
-
-
-
 
 
 
