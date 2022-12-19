@@ -1,42 +1,76 @@
 <template>
-  <div class="floor">
-    <div class="inner-floor"><button>{{ number.id }}</button></div>
+<div ref="theVeryFloor" class="floor">
+
+  <div class="numButton">
+
+      <div class="floor-number">{{ floorNumber }}</div>
+
+      <button
+        @click="$emit('toggleButton', floorIndex)"
+        :style="{'background-color':'#60f93a'}"
+        ref="theVeryButton"
+      />
   </div>
+  
+</div>
 </template>
 
 <script>
 
 export default {
-props: ['number'],
-components: {
-  
+props: ['floorNumber', 'floorIndex']
 }
-}
+
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@700&display=swap');
 .floor {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #e2e2a9;
+
+  display: flex;
+  justify-content: center;
+
+  border-top: none;
+  box-shadow: inset 0px 1px gold;
   height: 20%;
   background-color: #393b5a;
 }
+
+.numButton {
+  display: flex;
+  align-items: center;
+}
+
 button {
-  font-family: 'Kenia', cursive;
-  font-size: 5em;
+  border-radius: 40em;
+  cursor: pointer;
+  transition: all .15s;
+  width: 2em;
+  height: 2em;
+  margin-left: 1em;
+}
+
+button:hover {
+  transform: scale(1.125);
+}
+
+button:active {
+  transform: scale(1.025);
+}
+
+.floor-number {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  font-family: 'Courier Prime', monospace;
+  font-size: 5em;
   background-color: transparent;
   color: #e2e2a9;
   border: none;
   cursor: pointer;
-}
-.inner-floor {
-  position: absolute;
-  right: 10px;
 }
 </style>

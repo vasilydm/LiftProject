@@ -1,41 +1,35 @@
 <template>
   <div class="building">
+
+    <MyElevator
+      ref="myElevator"
+    />
+    
     <MyFloor
       v-for="floor in floors"
       :key="floor.id"
-      :number="floor"
+      :floorNumber="floor.id"
+      :floorIndex="floor.idx"
+      @toggleButton="$emit('toggleButton', $event)"
+      ref="myFloor"
     />
+
   </div>
 </template>
 
 <script>
+import MyElevator from './MyElevator.vue';
 import MyFloor from './MyFloor.vue';
+
 export default {
-  data() {
-    return {
-      floors: [
-        {
-          id: 5,
-        },
-        {
-          id: 4,
-        },
-        {
-          id: 3,
-        },
-        {
-          id: 2,
-        },
-        {
-          id: 1,
-        },
-      ]
-    }
-  },
-  components: {
-    MyFloor,
-  }
+
+inject: ['floors'],
+components: {
+  MyFloor,
+  MyElevator
 }
+}
+
 </script>
 
 <style>
@@ -43,6 +37,9 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
+  position: relative;
+
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -51,4 +48,5 @@ export default {
   width: 40rem;
   height: 30rem;
 }
+
 </style>
