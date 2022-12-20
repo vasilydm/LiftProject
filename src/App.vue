@@ -58,7 +58,7 @@ data() {
         isVisited: true,
       },
     ],
-    pushedButtons: []
+    pushedButtons: [],
   }
 },
 
@@ -68,7 +68,7 @@ methods: {
     let checkButton = this.floors.find((item) => {
       return item.idx === floorIndex
     })
-
+    
     // Проверяем, нужно ли туда запускать лифт
     if (checkButton.isPushed === true || checkButton.isVisited === true) {
       return;
@@ -77,14 +77,12 @@ methods: {
     //Заносим индекс этажа в список ожидания
     this.pushedButtons.push(floorIndex)
 
-
     // Забираем нужный номер этажа из очереди
     let shiftedFloor = this.pushedButtons.shift();
 
     // Получаем этаж, на который едем (html элемент)
     let targetFloor = this.$refs.myBuilding.$refs.myFloor[shiftedFloor].$refs.theVeryFloor;
 
-    
     //Меняем isPushed кнопки целевого этажа
     checkButton.isPushed = true
 
@@ -93,7 +91,7 @@ methods: {
 
     // Получаем крайнюю верхнюю точку targetFloor
     let topTargetFloor = targetFloor.getBoundingClientRect().top
-     + 2 + 'px';
+     - 7 + 'px';
 
     //Получаем сам элемент лифта
     let elevator = this.$refs.myBuilding.$refs.myElevator.$refs.theVeryElevator;
@@ -110,7 +108,9 @@ methods: {
     let duration = Math.abs(checkButton.id - checkVisited.id);
 
     //Запускаем лифт
-    gsap.to(elevator, {top:topTargetFloor, duration:duration}).then(() => {
+    gsap.to(elevator, {top:topTargetFloor, duration:duration})
+    .then(() => {
+      
       //Меняем значение isVisited целевого этажа
       checkButton.isVisited = true
 
@@ -120,20 +120,7 @@ methods: {
       //Меняем цвет кнопки целевого этажа на зеленый
       this.$refs.myBuilding.$refs.myFloor[floorIndex].$refs.theVeryButton.style.backgroundColor = '#60f93a'
     })
-
-      
-    
-
-    //ТАЙМЕР!!!
-
-    //МИГАНИЕ!!!
-
-
-
-
-
-
-    }
+  }
 },
 
 components: {
@@ -173,7 +160,7 @@ components: {
 .color3 {color: #d67788;}
 .color4 {color: #d6b775;}
 .color5 {color: #e2e2a9;}
-.color5 {color: #f93a3a;}
-.color5 {color: #60f93a;}
+.color6 {color: #f93a3a;}
+.color7 {color: #60f93a;}
 </style>
 

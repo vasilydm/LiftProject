@@ -2,41 +2,15 @@
   <div
     class="elevator"
     ref="theVeryElevator"
-    :style="{
-      bottom: floorHeight * (currentFloor - 1) + 'px',
-      transition: `bottom ${duration}s`
-    }"
-  >
-  </div>
+  ></div>
 </template>
 
 <script>
-export default {
-
-data() {
-  return {
-    currentFloor: 1,
-    floorHeight: null,
-    duration: 1,
-  }
-},
-
-mounted() {
-  console.log(this.$refs.theVeryElevator.offsetHeight);
-  this.floorHeight = this.$refs.theVeryElevator.offsetHeight
-},
-
-methods: {
-  
-}
-
-}
 
 </script>
 
 <style>
 .elevator {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 
